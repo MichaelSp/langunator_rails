@@ -1,34 +1,30 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Translation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Translation %></h1>
+</div>
 
-<p>
-  <strong>Word:</strong>
-  <%= @translation.word %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:times_right) %></dt>
+      <dd><pre class="prettyprint"><%= @translation.times_right %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:times_wrong) %></dt>
+      <dd><pre class="prettyprint"><%= @translation.times_wrong %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:times_skiped) %></dt>
+      <dd><pre class="prettyprint"><%= @translation.times_skiped %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:times_resetted) %></dt>
+      <dd><pre class="prettyprint"><%= @translation.times_resetted %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Word:</strong>
-  <%= @translation.word %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              translations_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_translation_path(@translation), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              translation_path(@translation),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Times right:</strong>
-  <%= @translation.times_right %>
-</p>
-
-<p>
-  <strong>Times wrong:</strong>
-  <%= @translation.times_wrong %>
-</p>
-
-<p>
-  <strong>Times skiped:</strong>
-  <%= @translation.times_skiped %>
-</p>
-
-<p>
-  <strong>Times resetted:</strong>
-  <%= @translation.times_resetted %>
-</p>
-
-<%= link_to 'Edit', edit_translation_path(@translation) %> |
-<%= link_to 'Back', translations_path %>
