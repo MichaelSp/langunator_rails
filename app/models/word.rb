@@ -1,5 +1,5 @@
 class Word < ActiveRecord::Base
-  belongs_to :language, dependent: :destroy
+  belongs_to :language
   has_many :translations
 
   accepts_nested_attributes_for :language

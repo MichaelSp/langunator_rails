@@ -25,6 +25,10 @@ module Concerns::SmartTable
       "@#{resource_sym}"
     end
 
+    def current_engine
+      self.class.parent.to_s.downcase
+    end
+
     def model
       @model = nil
       @model ||= begin
@@ -63,39 +67,48 @@ module Concerns::SmartTable
         end
       end
     end
+
+    def action_copy(object, path)
+      {
+          name: :copy,
+          custom_url: path,
+          custom_icon: SmartListing.config.classes(:icon_copy),
+          custom_title: 'Copy'
+      }
+    end
+
+    def action_edit(object, path)
+      {name: :edit, url: path}
+    end
+
+    def action_destroy(object, path)
+      {name: :destroy, url: path}
+    end
   end
 
   included do
     helper SmartListing::Helper
     include Helpers
 
-    helper_method :collection_sym, :collection_action, :collection_ivar, :resource_sym, :resource_ivar, :model, :collection, :resource
 
-    def self.table_is_searchable(filter_parameter: :filter)
-      @searchable = true
-      @filter_parameter = filter_parameter
+    helper_method :collection_sym, :collection_action, :collection_ivar, :resource_sym, :resource_ivar, :model, :collection, :resource, :current_engine
+    helper_method :action_copy, :action_edit, :action_destroy
+
+    def self.table_is_searchable(filter_parameter = :filter)
+      @@filter_parameter = filter_parameter
     end
   end
 
   def filtered(model)
-    (@searchable && !params[@filter_parameter].blank?) ? model.search { fulltext "#{params[@filter_parameter]}" }.results : model.all
+    (!params[@@filter_parameter].blank?) ? model.search(params[@@filter_parameter]) : model.all
   end
 
   def load_collection
     instance_variable_set collection_ivar, smart_listing_create(collection_sym, filtered(model), partial: "#{collection_sym}/listing")
   end
 
-  def create_resource
-    case action_name
-      when 'new' then model.new(resource_params)
-      when 'create' then model.create(resource_params)
-      else
-        nil
-    end
-  end
-
   def load_resource
-    instance_variable_set resource_ivar, (model.find(params[:id]) rescue create_resource)
+    instance_variable_set resource_ivar, (model.find(params[:id]) rescue (action_name == 'new' ? model.new(resource_params) : nil))
   end
 
   def resource
@@ -120,7 +133,7 @@ module Concerns::SmartTable
   end
 
   def create
-    instance_variable_get(resource_ivar) || model.create(resource_params)
+    instance_variable_get(resource_ivar) || instance_variable_set(resource_ivar, model.create(resource_params))
   end
 
   def copy
@@ -129,6 +142,7 @@ module Concerns::SmartTable
 
   def show
     resource
+    render resource, object: resource
   end
 
   def edit

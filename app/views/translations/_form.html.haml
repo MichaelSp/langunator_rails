@@ -1,11 +1,11 @@
 %td(colspan="10")
   = bootstrap_form_for @translation, layout: :horizontal,  url: resource.new_record? ? translations_path : translation_path(resource), remote: true  do |f|
-    =f.number_field :section, in: 0..100
+    =f.number_field :section, in: 0..100, tabindex: 1
     -[:word1, :word2].each do |word|
       = f.form_group label: {text: word.to_s.humanize} do
         = f.fields_for word do |w|
-          = w.collection_select :language_id, Language.uniq, :id, :name, {}, class: 'selectize'
-          = w.text_area :name, class: (w.object.language.input_class rescue ''), label: word.to_s.humanize
+          = w.collection_select :language_id, Language.uniq, :id, :name, {}, class: 'selectize', tabindex: 3
+          = w.text_area :name, class: (w.object.language.input_class rescue ''), label: word.to_s.humanize, tabindex: 2
           %blockquote.col-sm-offset-2.col-sm-10
             = language_help(w.object.language)
     .row
@@ -15,6 +15,6 @@
             %span.badge= f.object.send method
             = f.label method
       .col-sm-offset-4.col-sm-3
-        = f.submit nil, :class => 'btn btn-primary'
+        = f.submit nil, :class => 'btn btn-primary', tabindex: 4
         = link_to t('.cancel', :default => t("helpers.links.cancel")), |
-          translations_path, :class => 'btn btn-default'               |
+          translations_path, class: 'btn btn-default', tabindex: 5  |

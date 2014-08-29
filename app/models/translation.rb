@@ -12,6 +12,11 @@ class Translation < ActiveRecord::Base
   validates_presence_of :word2
   validates_numericality_of :section, only_integer: true, greater_than_or_equal_to: 0
 
+  def self.search (qry)
+    qry = "%#{qry}%"
+    joins(:word1).joins(:word2).where("words.name LIKE ?", qry)
+  end
+
   private
   def set_defaults
     self.section = 0

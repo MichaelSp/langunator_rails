@@ -7,3 +7,4 @@ $('.greektext').on('keypress', (evt)->
   convertCharToggle this, true, evt
 ).keyup (evt) ->
   convertStr this, evt
+$('#translation_word1_attributes_name').focus()

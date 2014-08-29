@@ -1,5 +1,6 @@
 class TranslationsController < ApplicationController
   include Concerns::SmartTable
+  table_is_searchable
 
   def new
     @translation = Translation.new

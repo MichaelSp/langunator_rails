@@ -1,5 +1,5 @@
 class Language < ActiveRecord::Base
-  has_many :words
+  has_many :words, dependent: :delete_all
 
   validates_uniqueness_of :name
 
