@@ -1,74 +1,40 @@
 class TranslationsController < ApplicationController
-  before_action :set_translation, only: [:show, :edit, :update, :destroy]
+  include Concerns::SmartTable
 
-  # GET /translations
-  # GET /translations.json
-  def index
-    @translations = Translation.all
-  end
-
-  # GET /translations/1
-  # GET /translations/1.json
-  def show
-  end
-
-  # GET /translations/new
   def new
     @translation = Translation.new
+    @translation.section = (session[:last_section] || nil)
+    @translation.word1.language_id = session[:last_language_1] || nil
+    @translation.word2.language_id = session[:last_language_2] || nil
+    @translation.user = current_user
+    super
   end
 
-  # GET /translations/1/edit
-  def edit
-  end
-
-  # POST /translations
-  # POST /translations.json
   def create
-    @translation = Translation.new(translation_params)
-
-    respond_to do |format|
-      if @translation.save
-        format.html { redirect_to @translation, notice: 'Translation was successfully created.' }
-        format.json { render :show, status: :created, location: @translation }
-      else
-        format.html { render :new }
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
-      end
-    end
+    super
+    session[:last_language_1] = resource.word1.language.id rescue nil
+    session[:last_language_2] = resource.word2.language.id rescue nil
   end
 
-  # PATCH/PUT /translations/1
-  # PATCH/PUT /translations/1.json
   def update
-    respond_to do |format|
-      if @translation.update(translation_params)
-        format.html { redirect_to @translation, notice: 'Translation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @translation }
-      else
-        format.html { render :edit }
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /translations/1
-  # DELETE /translations/1.json
-  def destroy
-    @translation.destroy
-    respond_to do |format|
-      format.html { redirect_to translations_url, notice: 'Translation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    super
+    session[:last_language_1] = resource.word1.language.id rescue nil
+    session[:last_language_2] = resource.word2.language.id rescue nil
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_translation
-      @translation = Translation.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def translation_params
-      params.require(:translation).permit(:word_id, :word_id, :times_right, :times_wrong, :times_skiped, :times_resetted)
+    def resource_params
+      p = params.require(:translation).permit(:section,
+          :word_id, :word_id, :times_right, :times_wrong, :times_skiped, :times_resetted,
+          word1_attributes: [:id, :name, :language_id, language_attributes: [:name, :id]],
+          word2_attributes: [:id, :name, :language_id, language_attributes: [:name, :id]]
+          ) if params[:translation]
+      [:word1_attributes, :word2_attributes].each do |word|
+        if p[word] && p[word][:language_id] && !(p[word][:language_id] =~ /\d+/)
+          language = p[word].delete :language_id
+          p[word][:language_attributes] ={name: language}
+        end
+      end
+      p
     end
 end

@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20140726093608) do
   end
 
   create_table "translations", force: true do |t|
-    t.integer  "word_id"
+    t.integer  "user_id"
+    t.integer  "word1_id"
+    t.integer  "word2_id"
+    t.integer  "section",        default: 0
     t.integer  "times_right"
     t.integer  "times_wrong"
     t.integer  "times_skiped"
@@ -29,7 +32,8 @@ ActiveRecord::Schema.define(version: 20140726093608) do
     t.datetime "updated_at"
   end
 
-  add_index "translations", ["word_id"], name: "index_translations_on_word_id"
+  add_index "translations", ["word1_id"], name: "index_translations_on_word1_id"
+  add_index "translations", ["word2_id"], name: "index_translations_on_word2_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -52,10 +56,6 @@ ActiveRecord::Schema.define(version: 20140726093608) do
   create_table "words", force: true do |t|
     t.integer  "language_id"
     t.string   "name"
-    t.integer  "times_wrong"
-    t.integer  "times_right"
-    t.integer  "times_reseted"
-    t.integer  "times_skiped"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

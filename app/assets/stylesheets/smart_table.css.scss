@@ -1,0 +1,21 @@
+.select2 {
+  width: 100%;
+
+  &.select2-container-multi > .select2-choices {
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  &.select2-container-multi.select2-dropdown-open.select2-container-active > .select2-choices {
+    border-radius: 4px 4px 0px 0px !important;
+  }
+
+  .select2-search-choice {
+    top: 3px;
+  }
+}
+
+table.table {
+  margin-left: 10%;
+  width: 80%;
+}

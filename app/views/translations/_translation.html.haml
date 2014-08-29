@@ -1,0 +1,8 @@
+-[object.word1, object.word2].each do |word|
+  %td
+    -if word
+      %i= "#{word.language.name}:" if word.language
+      %span.gr=word.name
+%td.actions= smart_listing_item_actions [{name: :edit, url: edit_translation_path(object)},
+  {name: :destroy, url: translation_path(object)}]
+
