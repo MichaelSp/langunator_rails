@@ -1,6 +1,15 @@
 class TranslationsController < ApplicationController
-  include Concerns::SmartTable
-  table_is_searchable
+
+  layout false
+  def spa
+    render :spa, layout: 'application'
+  end
+  def index
+    respond_to do |format|
+      format.html {}
+      format.json {@translations = Translation.all}
+    end
+  end
 
   def new
     @translation = Translation.new

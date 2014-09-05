@@ -1,7 +1,16 @@
-= smart_listing_controls_for(:translations, {class: "form-inline text-right"}) do
-  .form-group.filter.input-append
-    = text_field_tag :filter, '', class: "search form-control", placeholder: "Search...", autocomplete: :off
+.container.col-md-offset-2.col-md-8
+  .row.col-md-offset-8.col-md-3
+    %input.form-control(type="search" ng-model="filter.$" placeholder='Search...')
 
-  %button.btn.btn-primary{type: :submit}
-    =fa_icon 'search'
-=smart_listing_render(:translations)
+  %table.table(ng-table="tableParams" show-filter="true")
+    %tr(ng-repeat="translation in $data" ng-class="{ 'warning': translation.times_wrong / translation.times_right > 0}")
+      %td(data-title="'Section'" sortable="'section'" filter="{ 'section': 'text' }")
+        {{translation.section}}
+      %td(data-title="'Word 1'" sortable="'word1.name'")
+        %i
+          {{translation.word1.language.name}}:
+        {{translation.word1.name}}
+      %td(data-title="'Word 2'" sortable="'word2.name'")
+        %i
+          {{translation.word2.language.name}}:
+        {{translation.word2.name}}

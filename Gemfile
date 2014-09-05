@@ -41,7 +41,10 @@ gem 'omniauth-facebook'
 gem 'tzinfo-data'
 gem 'validates_formatting_of'
 
-gem 'smart_listing'
+gem 'rails-assets-angular'
+gem 'rails-assets-angular-route'
+gem 'rails-assets-ng-table'
+gem 'rabl'
 
 group :development do
   gem 'quiet_assets'

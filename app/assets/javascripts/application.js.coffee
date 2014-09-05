@@ -2,11 +2,14 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require bootstrap
-#= require smart_listing
 #= require microplugin
 #= require sifter
 #= require selectize
-
+#= require angular
+#= require angular-route
+#= require ng-table
+#= require routes
+#= require_tree ./angular
 #= require_tree .
 
 onlineStatus = (state)->

@@ -6,10 +6,10 @@
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    = link_to "Test", defined?(root_path) ? root_path : "#", class: "navbar-brand"
+    = link_to "Ask", defined?(root_path) ? root_path : "#/ask", class: "navbar-brand"
   #navbar-collapse-1.collapse.navbar-collapse
     %ul.nav.navbar-nav
-      %li= link_to "Edit", translations_path
+      %li= link_to "Edit", '#/edit'
     %ul.nav.navbar-nav.navbar-right
       - if defined?(Devise)
         - if user_signed_in?

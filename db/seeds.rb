@@ -6,5 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Language.create name: 'Greek'
-Language.create name: 'German'
+gr = Language.create name: 'Greek'
+de = Language.create name: 'German'
+
+Translation.create word1: Word.create(language: de, name: 'die Zeit'), word2: Word.create(language: gr, name: 'ὁ χρονοσ')
+Translation.create word1: Word.create(language: de, name: 'der Zeitpunkt'), word2: Word.create(language: gr, name: 'ὁ καιροσ')
