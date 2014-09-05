@@ -7,6 +7,7 @@
 #= require selectize
 #= require angular
 #= require angular-route
+#= require angular-resource
 #= require ng-table
 #= require routes
 #= require_tree ./angular

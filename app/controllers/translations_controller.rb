@@ -4,11 +4,14 @@ class TranslationsController < ApplicationController
   def spa
     render :spa, layout: 'application'
   end
-  def index
+  def show
     respond_to do |format|
       format.html {}
       format.json {@translations = Translation.all}
     end
+  end
+  def edit
+
   end
 
   def new
@@ -35,7 +38,7 @@ class TranslationsController < ApplicationController
   private
     def resource_params
       p = params.require(:translation).permit(:section,
-          :word_id, :word_id, :times_right, :times_wrong, :times_skiped, :times_resetted,
+          :word_id, :word_id, :times_right, :times_wrong, :times_skipped, :times_resetted,
           word1_attributes: [:id, :name, :language_id, language_attributes: [:name, :id]],
           word2_attributes: [:id, :name, :language_id, language_attributes: [:name, :id]]
           ) if params[:translation]

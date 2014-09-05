@@ -1,3 +1,4 @@
+app = angular.module 'langunator'
 
 paginated = (data, params)->
   data.slice((params.page() - 1) * params.count(), params.page() * params.count())
@@ -14,13 +15,14 @@ filtered = (data, query, $filter)->
   else
     data
 
-@TranslationsController = ($scope, $filter, $http, ngTableParams)->
-  $scope.title = 'YEAH'
-  $scope.storage = []
+class @TranslationsController extends ApplicationController
+  @register app
+  @inject '$scope', '$filter', '$http', 'ngTableParams', 'Translation'
 
-  $http.get('./translations.json').success (jsonData) ->
-    $scope.storage = jsonData
-    $scope.tableParams = new ngTableParams {
+  initialize: ->
+    @$scope.storage = Translation.all
+    @$scope.editId = -1;
+    @$scope.tableParams = new ngTableParams {
         page: 1 # show first page
         count: 10 # count per page
         sorting:
@@ -28,11 +30,19 @@ filtered = (data, query, $filter)->
       }, {
         total: 0
         getData: ($defer, params) ->
-            # use build-in angular filter
-            data = filtered($scope.storage, $scope.filter, $filter)
-            data = ordered(data, params, $filter)
-            $defer.resolve paginated(data, params)
+          # use build-in angular filter
+          data = filtered($scope.storage, $scope.filter, $filter)
+          data = ordered(data, params, $filter)
+          $defer.resolve paginated(data, params)
       }
-    $scope.$watch "filter.$", ()=>
-      $scope.tableParams.reload()
-      $scope.tableParams.page(1)
+
+  edit: (id)->
+    @$scope.editId = pid
+
+  submit: (translation)->
+    console.log(translation)
+
+
+#  $scope.$watch "filter.$", ()=>
+#    $scope.tableParams.reload()
+#    $scope.tableParams.page(1)

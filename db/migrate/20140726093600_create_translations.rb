@@ -5,10 +5,10 @@ class CreateTranslations < ActiveRecord::Migration
       t.references :word1, index: true
       t.references :word2, index: true
       t.integer :section, default: 0
-      t.integer :times_right
-      t.integer :times_wrong
-      t.integer :times_skiped
-      t.integer :times_resetted
+      t.integer :times_right, default: 0
+      t.integer :times_wrong, default: 0
+      t.integer :times_skipped, default: 0
+      t.integer :times_resetted, default: 0
 
       t.timestamps
     end

@@ -43,6 +43,7 @@ gem 'validates_formatting_of'
 
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-route'
+gem 'rails-assets-angular-resource'
 gem 'rails-assets-ng-table'
 gem 'rabl'
 
@@ -51,4 +52,12 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'spring'
+
+  # live reload assets
+  gem 'guard', '>= 2.2.2', require: false
+  gem 'guard-livereload', require: false
+  gem 'guard-rake', require: false
+  gem 'rack-livereload'
+  gem 'rb-fsevent', require: false
+  gem 'rb-readline', '~> 0.5.0'
 end

@@ -22,5 +22,9 @@ class Translation < ActiveRecord::Base
     self.section = 0
     self.word1 ||= Word.new
     self.word2 ||= Word.new
+    self.times_right ||= 0
+    self.times_wrong ||= 0
+    self.times_skipped ||= 0
+    self.times_resetted ||= 0
   end
 end

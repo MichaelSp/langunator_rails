@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :translations do
-    get :spa, on: :collection
-    get :ask, on: :collection
+  resource :translations do
+    get :spa
+    get :ask
+    get :form
   end
 
   devise_for :users, skip: [:sessions, :registrations]
