@@ -1,12 +1,8 @@
 /*
-*= require selectize
-*= require ng-table
 *= require_tree .
 *= require_self
 */
-@import 'bootstrap_configuration';
-@import 'bootstrap';
-@import 'rails_bootstrap_forms';
+@import 'bootstrap-sass-official';
 @import 'font-awesome';
 
 //->Prelang (ui_framework:twitter_bootstrap)

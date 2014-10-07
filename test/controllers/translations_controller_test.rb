@@ -18,7 +18,7 @@ class TranslationsControllerTest < ActionController::TestCase
 
   test "should create translation" do
     assert_difference('Translation.count') do
-      post :create, translation: { times_resetted: @translation.times_resetted, times_right: @translation.times_right, times_skipped: @translation.times_skipped, times_wrong: @translation.times_wrong, word_id: @translation.word_id, word_id: @translation.word_id }
+      post :create, translation: { times_resetted: @translation.times_resetted, times_right: @translation.times_right, times_skiped: @translation.times_skiped, times_wrong: @translation.times_wrong, word_id: @translation.word_id, word_id: @translation.word_id }
     end
 
     assert_redirected_to translation_path(assigns(:translation))
@@ -35,7 +35,7 @@ class TranslationsControllerTest < ActionController::TestCase
   end
 
   test "should update translation" do
-    patch :update, id: @translation, translation: { times_resetted: @translation.times_resetted, times_right: @translation.times_right, times_skipped: @translation.times_skipped, times_wrong: @translation.times_wrong, word_id: @translation.word_id, word_id: @translation.word_id }
+    patch :update, id: @translation, translation: { times_resetted: @translation.times_resetted, times_right: @translation.times_right, times_skiped: @translation.times_skiped, times_wrong: @translation.times_wrong, word_id: @translation.word_id, word_id: @translation.word_id }
     assert_redirected_to translation_path(assigns(:translation))
   end
 

@@ -1,7 +1,17 @@
-class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+class ApplicationController < ActionController::API
+  include ::ActionController::Serialization
+
+  def index
+    render json: collection.to_a
+  end
+
+  def collection
+    instance_variable_get "@#{model.pluralize.underscore}".to_sym
+  end
+
+  def model
+    self.class.name.demodulize.sub /Controller/, ''
+  end
 
   private
   

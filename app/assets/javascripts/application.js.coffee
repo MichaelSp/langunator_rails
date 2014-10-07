@@ -1,16 +1,15 @@
 #= require jquery
 #= require jquery_ujs
-#= require turbolinks
-#= require bootstrap
-#= require microplugin
-#= require sifter
-#= require selectize
-#= require angular
-#= require angular-route
-#= require angular-resource
-#= require ng-table
-#= require routes
-#= require_tree ./angular
+#= require bootstrap-sass-official
+#= require handlebars
+#= require ember
+#= require ember-data
+#= require_self
+#= require langunator_rails
+
+# for more details see: http://emberjs.com/guides/application/
+window.LangunatorRails = Ember.Application.create()
+
 #= require_tree .
 
 onlineStatus = (state)->

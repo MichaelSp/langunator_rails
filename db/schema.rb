@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 20140726093608) do
     t.integer  "word1_id"
     t.integer  "word2_id"
     t.integer  "section",        default: 0
-    t.integer  "times_right",    default: 0
-    t.integer  "times_wrong",    default: 0
-    t.integer  "times_skipped",  default: 0
-    t.integer  "times_resetted", default: 0
+    t.integer  "times_right"
+    t.integer  "times_wrong"
+    t.integer  "times_skiped"
+    t.integer  "times_resetted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

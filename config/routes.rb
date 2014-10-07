@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
-  resource :translations do
-    get :spa
-    get :ask
-    get :form
+  namespace :api do
+    namespace :v1 do
+      resources :translations do
+        get :query, on: :collection
+      end
+    end
   end
+
+  get 'statics/home'
+  root 'statics#home'
 
   devise_for :users, skip: [:sessions, :registrations]
 
@@ -19,5 +24,4 @@ Rails.application.routes.draw do
     get    "account" => "devise/registrations#edit",   as: :edit_user_registration
   end
 
-  root 'translations#spa'
 end

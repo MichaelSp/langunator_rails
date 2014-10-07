@@ -1,0 +1,9 @@
+h1 Translations
+
+p Your content here.
+
+each
+  li
+    link-to "translation" | name
+
+= outlet

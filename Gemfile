@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '>= 4'
 gem 'unicorn'
 
 # Use sqlite3 as the database for Active Record
@@ -16,41 +16,28 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
-# Use jquery as the JavaScript library
+gem 'devise'
+
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
-
-gem 'bundler'
-
 gem 'haml-rails'
-gem 'bootstrap_form'
+gem 'emblem-rails'
+
+gem 'rails-api'
+
+gem 'ember-rails'
+gem 'ember-data-source'
+
 gem 'font-awesome-rails'
-gem 'rails-assets-selectize'
-
-gem 'binding_of_caller'
-gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
-gem 'bootstrap-sass-extras'
-gem 'devise', github: 'plataformatec/devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'tzinfo-data'
-gem 'validates_formatting_of'
-
-gem 'rails-assets-angular'
-gem 'rails-assets-angular-route'
-gem 'rails-assets-angular-resource'
-gem 'rails-assets-ng-table'
-gem 'rabl'
+gem 'bootstrap-sass'
+gem 'rails-assets-bootstrap-sass-official'
+gem 'rails-assets-ember'
+gem 'rails-assets-ember-sync'
 
 group :development do
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'spring'
 
   # live reload assets
