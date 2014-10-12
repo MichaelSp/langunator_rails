@@ -1,9 +1,11 @@
 #= require jquery
 #= require jquery_ujs
+#= require select2
 #= require bootstrap-sass-official
 #= require handlebars
 #= require ember
 #= require ember-data
+#= require ember-select2
 #= require_self
 #= require langunator_rails
 
@@ -25,4 +27,3 @@ ready = ->
       type: (if window.navigator.onLine then 'online' else 'offline')
 
 $(document).ready ready
-$(document).on 'page:load', ready

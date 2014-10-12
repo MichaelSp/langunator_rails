@@ -6,5 +6,7 @@ class CreateWords < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    create_join_table :translations, :words
   end
 end

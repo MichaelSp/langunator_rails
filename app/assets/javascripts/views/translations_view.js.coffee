@@ -2,3 +2,5 @@
 
 LangunatorRails.TranslationsView = Ember.View.extend
   templateName: 'translations'
+  classNames: ['container']
+

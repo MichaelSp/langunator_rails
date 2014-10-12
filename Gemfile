@@ -32,6 +32,7 @@ gem 'bootstrap-sass'
 gem 'rails-assets-bootstrap-sass-official'
 gem 'rails-assets-ember'
 gem 'rails-assets-ember-sync'
+gem 'rails-assets-ember-select2'
 
 group :development do
   gem 'quiet_assets'

@@ -1,6 +1,6 @@
 class Word < ActiveRecord::Base
   belongs_to :language
-  has_many :translations
+  has_and_belongs_to_many :translations
 
   accepts_nested_attributes_for :language
 

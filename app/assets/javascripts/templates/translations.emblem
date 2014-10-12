@@ -1,9 +1,30 @@
-h1 Translations
 
-p Your content here.
-
-each
-  li
-    link-to "translation" | name
+.col-md-offset-8.col-md-4
+  input type="search" class="form-control" placeholder="Search..." value=search action="query"
+%table.table
+  %thead
+    %tr
+      %th Word 1
+      %th Word 2
+      %th Stats
+  %tbody
+    %tr.new-line
+      %td
+        select-2 placeholder='Language' content=languages
+        input class='form-control' placeholder='Word 1' value=word1
+      %td
+        select class='select2' placeholder='Language' value=lang2
+        input class='form-control' placeholder='Word 2' value=word2
+    each
+      %tr
+        each word_by_language
+          %td
+            %i #{language.name}:&nbsp;
+            =name
+        %td
+          =times_right
+          =times_wrong
+          =times_skipped
+          =times_resetted
 
 = outlet

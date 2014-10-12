@@ -1,11 +1,11 @@
-header#header
-  h2
+%header#header
+  %h2
     link-to "index" | Home
 
-  nav.navbar.navbar-default
-    ul.nav.navbar-nav
-      li
+  %nav.navbar.navbar-default
+    %ul.nav.navbar-nav
+      %li
         link-to "translations" | Edit
 
-div#content
+%div#container
   = outlet

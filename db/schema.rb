@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 20140726093608) do
 
   create_table "translations", force: true do |t|
     t.integer  "user_id"
-    t.integer  "word1_id"
-    t.integer  "word2_id"
     t.integer  "section",        default: 0
     t.integer  "times_right"
     t.integer  "times_wrong"
@@ -30,6 +28,11 @@ ActiveRecord::Schema.define(version: 20140726093608) do
     t.integer  "times_resetted"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_join_table "translations_words", force: true do |t|
+    t.integer 'translation_id'
+    t.integer 'word_id'
   end
 
   add_index "translations", ["word1_id"], name: "index_translations_on_word1_id"

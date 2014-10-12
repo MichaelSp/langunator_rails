@@ -2,4 +2,4 @@
 
 LangunatorRails.Word = DS.Model.extend
   name: DS.attr 'string'
-  language: DS.attr 'string'
+  language: DS.belongsTo 'language'
